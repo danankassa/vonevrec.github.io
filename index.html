@@ -9,40 +9,75 @@
       margin: 0;
       padding: 40px 20px;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #ffffff;
+      background: #d4d4d4; /* La couleur de fond*/
       color: #111111;
+      line-height: 1.6;
     }
 
     header {
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: bold;
+      text-align: center;
       margin-bottom: 40px;
+      color: #333;
     }
 
     .entry {
       margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
     .date {
       font-size: 0.9rem;
       color: #666666;
-      margin-bottom: 5px;
     }
 
     .title {
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 1.4rem;
+      font-weight: 600;
       margin-bottom: 10px;
+      transition: color 0.3s ease;
     }
 
     .title a {
       text-decoration: none;
       color: #111111;
-      border-bottom: 1px solid #111111;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .title a:hover {
+      color: #000;
+      border-color: #000;
     }
 
     .video {
       margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .video video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    footer img {
+      max-width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
     }
 
     /* Responsive */
@@ -50,7 +85,16 @@
       body {
         padding: 20px 10px;
       }
+
+      header {
+        font-size: 2rem;
+      }
+
+      .entry {
+        grid-template-columns: 1fr;
+      }
     }
+
   </style>
 </head>
 <body>
@@ -59,19 +103,24 @@
 
   <div class="entry">
     <div class="date">9 avril 2025</div>
-    <div class="title"><a href="https://www.youtube.com/watch?v=_eFUoZlv1Vk">VonEvrec avec MARTINA</a></div>
+    <div class="title"><a href="https://www.youtube.com/watch?v=_eFUoZlv1Vk"> MARTINA nous a rejoint pour l’année 2025</a></div>
   </div>
 
   <div class="entry">
     <div class="date">5 avril 2025</div>
-    <div class="title">Teaser vidéo en exclu</div>
+    <div class="title »>…</div>
     <div class="video">
-      <video width="100%" controls>
+      <video controls>
         <source src="ton_fichier_video.mp4" type="video/mp4">
         V3.
       </video>
     </div>
   </div>
+
+  <!-- Logo section -->
+  <footer>
+    <img src="ton_logo.png" alt="VonEvrec Logo">
+  </footer>
 
 </body>
 </html>
