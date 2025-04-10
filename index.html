@@ -70,28 +70,11 @@
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s, color 0.3s;
-      user-select: none; /* Désactive la sélection */
-      pointer-events: none; /* Empêche l'interaction directe */
-      position: relative;
     }
 
     .title a:hover {
       border-color: #111;
       color: #000;
-    }
-
-    /* Application d'un effet de surface non copiable mais cliquable */
-    .title a:after {
-      content: ''; 
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.1); /* Effet de survol */
-      pointer-events: all; /* Rend cliquable */
-      border-radius: 5px;
-      z-index: -1;
     }
 
     /* Footer avec titre principal */
