@@ -40,6 +40,7 @@
       justify-content: flex-end;
       padding: 40px 60px 20px;
       flex-grow: 1;
+      position: relative;
     }
 
     .news-list {
@@ -54,6 +55,13 @@
       flex-direction: column;
       align-items: flex-end;
       text-align: right;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .news-item .title {
+      opacity: 0;
+      animation: slideUp 0.8s forwards;
     }
 
     .date {
@@ -75,6 +83,18 @@
     .title a:hover {
       border-color: #111;
       color: #000;
+    }
+
+    /* Animation pour l'ouverture des titres */
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     /* Modal Style */
