@@ -214,7 +214,7 @@
       <div class="news-item">
         <div class="date">09-03-25</div>
         <div class="title">
-          <a href="javascript:void(0);" onclick="openModal();">Martina rejoint VonEvrec pour 2025</a>
+          <a href="javascript:void(0);" onclick="openModal('https://www.youtube.com/embed/_eFUoZlv1Vk?autoplay=1');">Martina rejoint VonEvrec pour 2025</a>
         </div>
       </div>
 
@@ -238,7 +238,7 @@
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/_eFUoZlv1Vk?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="videoIframe" width="100%" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -248,14 +248,16 @@
   </footer>
 
   <script>
-    // Ouvre la modal
-    function openModal() {
+    // Ouvre la modal avec une vidéo YouTube spécifique
+    function openModal(videoUrl) {
       document.getElementById('myModal').style.display = "block";
+      document.getElementById('videoIframe').src = videoUrl;
     }
 
     // Ferme la modal
     function closeModal() {
       document.getElementById('myModal').style.display = "none";
+      document.getElementById('videoIframe').src = ''; // Vide le lien pour arrêter la vidéo
     }
   </script>
 
