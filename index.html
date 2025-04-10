@@ -6,149 +6,148 @@
   <title>VonEvrec</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="https://raw.githubusercontent.com/danankassa/vonevrec.github.io/main/logo_lunettes.jpg" type="image/jpeg" />
+  <link rel="icon" href="LOGOFINAL.jpg" type="image/jpeg" />
 
   <style>
     @font-face {
       font-family: 'courier-std';
-      src: local('Courier Std'), local('CourierStd'), monospace;
+      src: local('Courier New'), monospace;
     }
 
     body {
       margin: 0;
-      padding: 40px 20px;
-      font-family: 'courier-std';
+      padding: 0;
+      font-family: 'courier-std', monospace;
       background: #d4d4d4;
       color: #111111;
-      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
+    /* Logo centré en haut */
     .logo-top {
-      text-align: center;
-      margin-bottom: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0 20px;
     }
 
     .logo-top img {
-      max-width: 130px;
+      max-width: 100px;
       height: auto;
     }
 
-    .content {
+    /* Bloc principal avec la liste à droite */
+    .main-content {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding: 40px 60px 20px;
+      flex-grow: 1;
     }
 
-    .entry-list {
+    .news-list {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
       gap: 30px;
-      flex: 1;
+      max-width: 400px;
     }
 
-    .entry {
-      text-align: right;
+    .news-item {
+      display: flex;
+      flex-direction: column;
     }
 
     .date {
-      font-size: 0.8rem;
-      color: #666;
-      margin-bottom: 2px;
+      font-size: 0.75rem;
+      color: #555;
+      margin-bottom: 5px;
     }
 
     .title a {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      text-decoration: none;
       color: #111;
+      text-decoration: none;
       border-bottom: 1px solid transparent;
-      padding-bottom: 2px;
-      transition: all 0.3s ease;
+      transition: border-color 0.3s, color 0.3s;
     }
 
     .title a:hover {
+      border-color: #111;
       color: #000;
-      border-color: #000;
     }
 
-    .video {
-      width: 100%;
-      margin-top: 60px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .video video {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
+    /* Footer avec titre principal */
     footer {
       text-align: center;
-      margin-top: 100px;
-      font-size: 1.4rem;
+      padding: 40px 0 20px;
+      font-size: 2rem;
       font-weight: bold;
       color: #333;
     }
 
     @media (max-width: 768px) {
-      .entry-list {
-        align-items: flex-start;
+      .main-content {
+        padding: 20px;
+        justify-content: center;
       }
 
-      .entry {
-        text-align: left;
+      .news-list {
+        width: 100%;
+        gap: 20px;
       }
 
       .title a {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
       }
 
       footer {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Logo en haut -->
   <div class="logo-top">
-    <img src="https://raw.githubusercontent.com/danankassa/vonevrec.github.io/main/VonEvrecLogo.jpg" alt="VonEvrec Logo">
+    <img src="LOGOFINAL.jpg" alt="VonEvrec Logo">
   </div>
 
-  <div class="content">
-    <div class="entry-list">
-      <div class="entry">
+  <!-- Liste des titres à gauche -->
+  <div class="main-content">
+    <div class="news-list">
+      <div class="news-item">
         <div class="date">09-04-25</div>
         <div class="title">
-          <a href="https://www.youtube.com/watch?v=_eFUoZlv1Vk" target="_blank">Martina rejoint VonEvrec pour 2025</a>
+          <a href="https://www.youtube.com/watch?v=_eFUoZlv1Vk" target="_blank">
+            - Martina rejoint VonEvrec pour 2025
+          </a>
         </div>
       </div>
 
-      <div class="entry">
+      <div class="news-item">
         <div class="date">05-04-25</div>
-        <div class="title">Prochain projet en cours création...</div>
+        <div class="title">
+          <a href="#">- EP by Dana N'kassa en préparation…</a>
+        </div>
       </div>
 
-      <div class="entry">
-        <div class="date">24-01-25</div>
-        <div class="title">Bienvenue à VonEvrec (en préparation...)</div>
+      <div class="news-item">
+        <div class="date">02-04-25</div>
+        <div class="title">
+          <a href="#">- Bienvenue à VonEvrec : bientôt disponible</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="video">
-    <video controls>
-      <source src="ton_fichier_video.mp4" type="video/mp4" />
-      Votre navigateur ne supporte pas la lecture vidéo.
-    </video>
-  </div>
-
-  <footer>VonEvrec</footer>
+  <!-- Titre principal en bas -->
+  <footer>
+    ©VonEvrec
+  </footer>
 
 </body>
 </html>
