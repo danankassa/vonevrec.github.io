@@ -146,7 +146,7 @@
       <div class="news-item">
         <div class="date">09-03-25</div>
         <div class="title">
-          <a class="toggle" data-type="video" data-src="https://www.youtube.com/embed/_eFUoZlv1Vk">Martina rejoint VonEvrec pour 2025</a>
+          <a class="toggle" data-type="video" data-src="https://www.youtube.com/embed/_eFUoZlv1Vk?autoplay=1">Martina rejoint VonEvrec pour 2025</a>
         </div>
         <div class="content"></div>
       </div>
@@ -195,12 +195,10 @@
           const src = this.dataset.src;
 
           if (type === 'video') {
-          // Ajouter autoplay à la vidéo
-          src += src.includes('?') ? '&autoplay=1' : '?autoplay=1';
-          content.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
-        } else if (type === 'image') {
-          content.innerHTML = `<img src="${src}" alt="image">`;
-        }
+            content.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
+          } else if (type === 'image') {
+            content.innerHTML = `<img src="${src}" alt="image">`;
+          }
 
           content.classList.add('open');
         }
