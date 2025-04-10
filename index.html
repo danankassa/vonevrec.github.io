@@ -195,10 +195,12 @@
           const src = this.dataset.src;
 
           if (type === 'video') {
-            content.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
-          } else if (type === 'image') {
-            content.innerHTML = `<img src="${src}" alt="image">`;
-          }
+          // Ajouter autoplay à la vidéo
+          src += src.includes('?') ? '&autoplay=1' : '?autoplay=1';
+          content.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
+        } else if (type === 'image') {
+          content.innerHTML = `<img src="${src}" alt="image">`;
+        }
 
           content.classList.add('open');
         }
