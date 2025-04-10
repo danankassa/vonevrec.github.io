@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VonEvrec</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="LOGOFINAL.jpg" type="image/jpeg" />
 
   <style>
@@ -21,31 +19,11 @@
       overflow-x: hidden;
     }
 
-    /* Animation de fondu noir au début */
-    .animation-layer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      z-index: 1000;
-      animation: fadeOut 2s ease-out forwards;
-    }
-
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-
-    /* Logo centré en haut et au-dessus de l'animation */
     .logo-top {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-      pointer-events: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0 20px;
     }
 
     .logo-top img {
@@ -53,11 +31,10 @@
       height: auto;
     }
 
-    /* Bloc principal avec la liste à droite */
     .main-content {
       display: flex;
       justify-content: flex-end;
-      padding: 140px 60px 20px; /* padding top augmenté à cause du logo en fixed */
+      padding: 40px 60px 20px;
       flex-grow: 1;
     }
 
@@ -89,6 +66,7 @@
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s, color 0.3s;
+      cursor: pointer;
     }
 
     .title a:hover {
@@ -96,7 +74,26 @@
       color: #000;
     }
 
-    /* Footer avec titre principal */
+    .content {
+      width: 100%;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.6s ease;
+    }
+
+    .content.open {
+      max-height: 500px;
+      margin-top: 15px;
+    }
+
+    .content iframe,
+    .content img {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 1 / 1;
+      border: none;
+    }
+
     footer {
       text-align: center;
       padding: 40px 0 20px;
@@ -107,7 +104,7 @@
 
     @media (max-width: 768px) {
       .main-content {
-        padding: 100px 20px 20px;
+        padding: 20px;
         justify-content: center;
       }
 
@@ -128,55 +125,86 @@
 </head>
 <body>
 
-  <!-- Animation noire au début -->
-  <div class="animation-layer"></div>
-
-  <!-- Logo en haut (indépendant de l'animation) -->
   <div class="logo-top">
     <img src="LOGOFINAL.jpg" alt="VonEvrec Logo">
   </div>
 
-  <!-- Liste des titres à droite -->
   <div class="main-content">
     <div class="news-list">
+
+      <!-- Externe : redirection -->
       <div class="news-item">
         <div class="date">10-04-25</div>
         <div class="title">
-          <a href="https://dice.fm/event/8eoa27-la-scne-mergente-festival-samedi-19-avril-19th-apr-ground-control-gare-de-lyon-paris-tickets?utm_source=dice&utm_campaign=event_share&utm_medium=event_share&_branch_referrer=H4sIAAAAAAAAAwXBvQqAIBAA4LdpTCXpD6KpoaUlaI0z70pKi1No69n7viOlJ7ZCXC6cuXUb5uTF9Nh5geGl2fTxAEZene1KXZPSyhYasAEppTIbUqWyj5GQ2YV9NXy%2FEbkbQ0ywM%2FgfaxP5gGAAAAA%3D&sharer_id=648f141d34ae9a0001bcef71&_branch_match_id=1438685818934946073" target="_blank">
+          <a href="https://dice.fm/event/..." target="_blank">
             Martina en Concert à Paris (GroundControl) 19/04/25
           </a>
         </div>
       </div>
-      
+
+      <!-- Vidéo YouTube carrée -->
       <div class="news-item">
         <div class="date">09-03-25</div>
         <div class="title">
-          <a href="https://www.youtube.com/watch?v=_eFUoZlv1Vk" target="_blank">
-            Martina rejoint VonEvrec pour 2025
-          </a>
+          <a class="toggle" data-type="video" data-src="https://www.youtube.com/embed/_eFUoZlv1Vk">Martina rejoint VonEvrec pour 2025</a>
         </div>
+        <div class="content"></div>
       </div>
 
+      <!-- Image -->
       <div class="news-item">
         <div class="date">05-02-25</div>
         <div class="title">
-          <a href="#">EP by Dana N'kassa en préparation…</a>
+          <a class="toggle" data-type="image" data-src="danacover1.jpg">EP by Dana N'kassa en préparation…</a>
         </div>
+        <div class="content"></div>
       </div>
 
+      <!-- Placeholder texte -->
       <div class="news-item">
         <div class="date">02-02-25</div>
         <div class="title">
-          <a href="#">Bienvenue à VonEvrec : bientôt disponible</a>
+          <a class="toggle" data-type="text">Bienvenue à VonEvrec : bientôt disponible</a>
         </div>
+        <div class="content"><p style="padding-top: 10px;">Du nouveau arrive bientôt… Merci de patienter.</p></div>
       </div>
+
     </div>
   </div>
 
-  <!-- Titre principal en bas -->
-  <footer>
-    ©VonEvrec
-  </footer>
+  <footer>©VonEvrec</footer>
+
+  <script>
+    document.querySelectorAll('.toggle').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const parent = this.closest('.news-item');
+        const content = parent.querySelector('.content');
+        const isOpen = content.classList.contains('open');
+
+        // Fermer les autres
+        document.querySelectorAll('.content').forEach(c => {
+          c.classList.remove('open');
+          c.innerHTML = '';
+        });
+
+        // Toggle ouverture
+        if (!isOpen) {
+          const type = this.dataset.type;
+          const src = this.dataset.src;
+
+          if (type === 'video') {
+            content.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
+          } else if (type === 'image') {
+            content.innerHTML = `<img src="${src}" alt="image">`;
+          }
+
+          content.classList.add('open');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
