@@ -9,9 +9,9 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: "Hoefler Text", "Times New Roman", serif;
-        background-color: #f2f2f2;
-        color: #111;
+        font-family: 'Hoefler Text', 'Times New Roman', serif;
+        background-color: #d4d4d4;
+        color: #111111;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -19,60 +19,60 @@
 
       .logo-top {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 40px 0 20px;
+        padding: 20px 40px;
       }
 
       .logo-top img {
-        max-width: 60px;
+        max-width: 40px;
         height: auto;
       }
 
       .main-content {
         display: flex;
-        justify-content: flex-end;
-        padding: 40px 60px 20px;
+        justify-content: flex-start;
+        padding: 20px 40px;
         flex-grow: 1;
       }
 
       .news-list {
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
       }
 
       .news-item {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #333;
         padding-bottom: 10px;
-        cursor: pointer;
+        cursor: default;
       }
 
       .date {
         font-size: 0.75rem;
-        color: #999;
+        color: #888;
         font-weight: bold;
         margin-bottom: 5px;
       }
 
       .title a {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         font-weight: normal;
-        color: #111;
+        color: #eee;
         text-decoration: none;
-        transition: color 0.3s ease;
+        cursor: text;
       }
 
       .title a:hover {
-        color: #555;
+        color: #eee;
       }
 
       .content {
         overflow: hidden;
         max-height: 0;
-        transition: max-height 0.6s ease, margin-top 0.6s ease;
+        transition: max-height 0.4s ease;
       }
 
       .content.open {
@@ -83,35 +83,34 @@
       .content iframe,
       .content img {
         width: 100%;
-        max-width: 700px;
+        max-width: 600px;
         aspect-ratio: 1 / 1;
         border: none;
       }
 
       .content p {
         margin: 0;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        color: #aaa;
       }
 
       footer {
-        text-align: center;
-        padding: 40px 0 20px;
-        font-size: 1.5rem;
-        color: #666;
+        text-align: left;
+        padding: 20px 40px;
+        font-size: 1rem;
+        color: #444;
+        border-top: 1px solid #222;
       }
 
       @media (max-width: 768px) {
-        .main-content {
+        .logo-top,
+        .main-content,
+        footer {
           padding: 20px;
-          justify-content: center;
         }
 
         .title a {
-          font-size: 0.9rem;
-        }
-
-        footer {
-          font-size: 1.3rem;
+          font-size: 0.85rem;
         }
       }
     </style>
@@ -161,7 +160,7 @@
         <div class="news-item">
           <div class="date">02-02-25</div>
           <div class="title">
-            <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46">Dana N'kassa & VonEvrec pour 2025.</a>
+            <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
           </div>
           <div class="content"></div>
         </div>
@@ -171,15 +170,13 @@
           <div class="title">
             <a href="#" class="toggle" data-type="text">Bienvenue chez VonEvrec : ouverture prochaine.</a>
           </div>
-          <div class="content">
-            <p>Du nouveau arrive bientôt… Merci de patienter.</p>
-          </div>
+          <div class="content"><p>Du nouveau arrive bientôt… Merci de patienter.</p></div>
         </div>
 
       </div>
     </div>
 
-    <footer>©VonEvrec</footer>
+    <footer>© VonEvrec</footer>
 
     <script>
       document.querySelectorAll('.toggle').forEach(link => {
@@ -189,7 +186,6 @@
           const content = parent.querySelector('.content');
           const isOpen = content.classList.contains('open');
 
-          // Ferme tout sauf celui qu'on ouvre
           document.querySelectorAll('.content.open').forEach(c => {
             if (c !== content) {
               c.classList.remove('open');
@@ -206,7 +202,7 @@
             } else if (type === 'image') {
               content.innerHTML = `<img src="${src}" alt="media">`;
             } else if (type === 'text') {
-              content.innerHTML = `<p>Du nouveau arrive bientôt… Merci de patienter.</p>`;
+              content.innerHTML = parent.querySelector('.content').innerHTML;
             }
 
             content.classList.add('open');
