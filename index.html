@@ -41,22 +41,31 @@
         flex-direction: column;
         gap: 20px;
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
       }
 
       .news-item {
         background-color: transparent;
-        padding: 10px 0;
         cursor: default;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .news-header {
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
       }
 
       .date {
-  font-size: 0.75rem;
-  color: #888;
-  font-weight: normal;
-  margin-bottom: 5px;
-  font-family: "Time";
-}
+        font-size: 0.75rem;
+        color: #888;
+        font-weight: normal;
+        font-family: "Time";
+        min-width: 70px;
+        flex-shrink: 0;
+      }
 
       .title a {
         font-size: 0.9rem;
@@ -79,16 +88,16 @@
       }
 
       .content.open {
-        max-height: 900px;
+        max-height: 1000px;
         margin-top: 10px;
       }
 
       .content iframe,
       .content img {
         width: 100%;
-        max-width: 600px;
-        aspect-ratio: 1 / 1;
+        max-width: 100%;
         border: none;
+        height: auto;
       }
 
       .content p {
@@ -115,6 +124,11 @@
         .title a {
           font-size: 0.85rem;
         }
+
+        .news-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
     </style>
   </head>
@@ -128,56 +142,62 @@
       <div class="news-list">
 
         <div class="news-item">
-  <div style="display: contents">
-    <div class="date" style="margin-right: 20px;">10-04-25</div>
-          <div class="title">
-            <a href="https://dice.fm/event/8eoa27-la-scne-mergente-festival-samedi-19-avril-19th-apr-ground-control-gare-de-lyon-paris-tickets?utm_source=dice&utm_campaign=event_share&utm_medium=event_share" target="_blank">
-              Martina en Concert — GroundControl Paris, 19 Avril 2025.
-            </a>
+          <div class="news-header">
+            <div class="date">10-04-25</div>
+            <div class="title">
+              <a href="https://dice.fm/event/8eoa27-la-scne-mergente-festival-samedi-19-avril-19th-apr-ground-control-gare-de-lyon-paris-tickets?utm_source=dice&utm_campaign=event_share&utm_medium=event_share" target="_blank">
+                Martina en Concert — GroundControl Paris, 19 Avril 2025.
+              </a>
+            </div>
           </div>
         </div>
 
         <div class="news-item">
-  <div style="display: contents">
-    <div class="date" style="margin-right: 20px;">09-03-25</div>
-          <div class="title">
-            <a href="#" class="toggle" data-type="video" data-src="https://www.youtube.com/embed/_eFUoZlv1Vk">Martina & VonEvrec pour 2025.</a>
-          </div>
-          <div class="content"></div>
-        </div>
-
-        <div class="news-item">
-  <div style="display: contents">
-    <div class="date" style="margin-right: 20px;">08-02-25</div>
-          <div class="title">
-            <a href="#" class="toggle" data-type="image" data-src="martinaonthestageatishadayv2.jpg">ISHA by Martina.</a>
+          <div class="news-header">
+            <div class="date">09-03-25</div>
+            <div class="title">
+              <a href="#" class="toggle" data-type="video" data-src="https://www.youtube.com/embed/_eFUoZlv1Vk">Martina & VonEvrec pour 2025.</a>
+            </div>
           </div>
           <div class="content"></div>
         </div>
 
         <div class="news-item">
-  <div style="display: contents">
-    <div class="date" style="margin-right: 20px;">05-02-25</div>
-          <div class="title">
-            <a href="#" class="toggle" data-type="image" data-src="expressioncover.jpg">EP par Dana N'kassa en préparation.</a>
+          <div class="news-header">
+            <div class="date">08-02-25</div>
+            <div class="title">
+              <a href="#" class="toggle" data-type="image" data-src="martinaonthestageatishadayv2.jpg">ISHA by Martina.</a>
+            </div>
           </div>
           <div class="content"></div>
         </div>
 
         <div class="news-item">
-  <div style="display: contents">
-    <div class="date" style="margin-right: 20px;">02-02-25</div>
-          <div class="title">
-            <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
+          <div class="news-header">
+            <div class="date">05-02-25</div>
+            <div class="title">
+              <a href="#" class="toggle" data-type="image" data-src="expressioncover.jpg">EP par Dana N'kassa en préparation.</a>
+            </div>
           </div>
           <div class="content"></div>
         </div>
 
         <div class="news-item">
-  <div style="display: contents">
-    <div class="date" style="margin-right: 20px;">07-01-25</div>
-          <div class="title">
-            <a href="#" class="toggle" data-type="text">Bienvenue chez VonEvrec : ouverture prochaine.</a>
+          <div class="news-header">
+            <div class="date">02-02-25</div>
+            <div class="title">
+              <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
+            </div>
+          </div>
+          <div class="content"></div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-header">
+            <div class="date">07-01-25</div>
+            <div class="title">
+              <a href="#" class="toggle" data-type="text">Bienvenue chez VonEvrec : ouverture prochaine.</a>
+            </div>
           </div>
           <div class="content"><p>Du nouveau arrive bientôt… Merci de patienter.</p></div>
         </div>
