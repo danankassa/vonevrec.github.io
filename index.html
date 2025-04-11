@@ -9,9 +9,9 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: 'Hoefler Text', 'Times New Roman', serif;
-        background-color: #d4d4d4;
-        color: #111111;
+        font-family: "Courier New", Courier, monospace;
+        background-color: #111;
+        color: #eee;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
@@ -19,9 +19,9 @@
 
       .logo-top {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        padding: 20px 40px;
+        padding: 40px 0 20px;
       }
 
       .logo-top img {
@@ -32,7 +32,7 @@
       .main-content {
         display: flex;
         justify-content: flex-start;
-        padding: 20px 40px;
+        padding: 0 40px 20px;
         flex-grow: 1;
       }
 
@@ -45,8 +45,8 @@
       }
 
       .news-item {
-        border-bottom: 1px solid #333;
-        padding-bottom: 10px;
+        background-color: transparent;
+        padding: 10px 0;
         cursor: default;
       }
 
@@ -99,7 +99,7 @@
         padding: 20px 40px;
         font-size: 1rem;
         color: #444;
-        border-top: 1px solid #222;
+        background-color: #111;
       }
 
       @media (max-width: 768px) {
@@ -186,13 +186,7 @@
           const content = parent.querySelector('.content');
           const isOpen = content.classList.contains('open');
 
-          document.querySelectorAll('.content.open').forEach(c => {
-            if (c !== content) {
-              c.classList.remove('open');
-              c.innerHTML = '';
-            }
-          });
-
+          // Permet l'ouverture multiple
           if (!isOpen) {
             const type = this.dataset.type;
             const src = this.dataset.src;
