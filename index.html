@@ -132,7 +132,6 @@
   <div class="main-content">
     <div class="news-list">
 
-      <!-- Externe : redirection -->
       <div class="news-item">
         <div class="date">10-04-25</div>
         <div class="title">
@@ -142,7 +141,6 @@
         </div>
       </div>
 
-      <!-- Vidéo YouTube carrée -->
       <div class="news-item">
         <div class="date">09-03-25</div>
         <div class="title">
@@ -151,7 +149,6 @@
         <div class="content"></div>
       </div>
 
-      <!-- Image -->
       <div class="news-item">
         <div class="date">08-02-25</div>
         <div class="title">
@@ -160,7 +157,6 @@
         <div class="content"></div>
       </div>
 
-      <!-- Image -->
       <div class="news-item">
         <div class="date">05-02-25</div>
         <div class="title">
@@ -169,19 +165,14 @@
         <div class="content"></div>
       </div>
 
-      
+      <div class="news-item">
+        <div class="date">02-02-25</div>
+        <div class="title">
+          <a class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
+        </div>
+        <div class="content"></div>
+      </div>
 
-    <!-- Vidéo Vimeo -->
-<div class="news-item">
-  <div class="date">02-02-25</div>
-  <div class="title">
-    <a class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
-  </div>
-  <div class="content"></div>
-</div>
-
-
-      <!-- Placeholder texte -->
       <div class="news-item">
         <div class="date">07-01-25</div>
         <div class="title">
@@ -204,7 +195,6 @@
         const content = parent.querySelector('.content');
         const isOpen = content.classList.contains('open');
 
-        // Toggle ouverture sans fermer les autres
         if (!isOpen) {
           const type = this.dataset.type;
           const src = this.dataset.src;
@@ -214,7 +204,7 @@
           } else if (type === 'image') {
             content.innerHTML = `<img src="${src}" alt="image">`;
           } else if (type === 'text') {
-            content.innerHTML = this.closest('.news-item').querySelector('.content').innerHTML;
+            content.innerHTML = parent.querySelector('.content').innerHTML;
           }
 
           content.classList.add('open');
