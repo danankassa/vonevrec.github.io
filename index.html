@@ -7,12 +7,24 @@
   <link rel="icon" href="lunettesofcreation.jpg" type="image/jpeg" />
 
   <style>
-    body {
+    :root {
+      --background: #ffffff;
+      --foreground: #111111;
+      --accent: #999999;
+      --card-bg: #f7f7f7;
+      --border-radius: 1rem;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Hoefler Text', 'Times New Roman', serif;
-      background: #d4d4d4;
-      color: #111111;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -23,55 +35,62 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 40px 0 20px;
+      padding: 2rem 0;
     }
 
     .logo-top img {
       max-width: 60px;
       height: auto;
+      border-radius: 50%;
     }
 
     .main-content {
       display: flex;
-      justify-content: flex-end;
-      padding: 40px 60px 20px;
+      justify-content: center;
+      padding: 2rem;
       flex-grow: 1;
     }
 
     .news-list {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      max-width: 400px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1000px;
     }
 
     .news-item {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .news-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
     }
 
     .date {
       font-size: 0.75rem;
-      color: #999;
-      font-weight: bold;
-      margin-bottom: 5px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
     }
 
     .title a {
-      font-size: 0.95rem;
-      font-weight: normal;
-      color: #111;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--foreground);
       text-decoration: none;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s, color 0.3s;
-      cursor: pointer;
     }
 
     .title a:hover {
-      border-color: #111;
-      color: #000;
+      border-color: var(--foreground);
     }
 
     .content {
@@ -82,60 +101,44 @@
     }
 
     .content.open {
-      max-height: 500px;
-      margin-top: 15px;
+      max-height: 700px;
+      margin-top: 1rem;
     }
 
     .content iframe,
     .content img {
       width: 100%;
-      max-width: 700px;
       aspect-ratio: 1 / 1;
+      border-radius: var(--border-radius);
       border: none;
     }
 
     footer {
       text-align: center;
-      padding: 40px 0 20px;
-      font-size: 1.5rem;
+      padding: 2rem 1rem;
+      font-size: 1rem;
       font-weight: normal;
-      color: #666;
+      color: var(--accent);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .main-content {
-        padding: 20px;
-        justify-content: center;
-      }
-
-      .news-list {
-        width: 95%;
-        gap: 30px;
-      }
-
-      .title a {
-        font-size: 0.9rem;
-      }
-
-      footer {
-        font-size: 1.6rem;
+        padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
-
   <div class="logo-top">
     <img src="lunettesofcreation.jpg" alt="VonEvrec Logo">
   </div>
 
   <div class="main-content">
     <div class="news-list">
-
       <div class="news-item">
         <div class="date">10-04-25</div>
         <div class="title">
-          <a href="https://dice.fm/event/8eoa27-la-scne-mergente-festival-samedi-19-avril-19th-apr-ground-control-gare-de-lyon-paris-tickets?utm_source=dice&utm_campaign=event_share&utm_medium=event_share&_branch_referrer=H4sIAAAAAAAAAwXBvQqAIBAA4LdpTCXpD6KpoaUlaI0z70pKi1No69n7viOlJ7ZCXC6cuXUb5uTF9Nh5geGl2fTxAEZene1KXZPSyhYasAEppTIbUqWyj5GQ2YV9NXy%2FEbkbQ0ywM%2FgfaxP5gGAAAAA%3D&sharer_id=648f141d34ae9a0001bcef71&_branch_match_id=1438754714637082572" target="_blank">
+          <a href="https://dice.fm/event/8eoa27-la-scne-mergente-festival-samedi-19-avril-19th-apr-ground-control-gare-de-lyon-paris-tickets?utm_source=dice&utm_campaign=event_share&utm_medium=event_share" target="_blank">
             Martina en Concert — GroundControl Paris, 19 Avril 2025.
           </a>
         </div>
@@ -180,7 +183,6 @@
         </div>
         <div class="content"><p style="padding-top: 10px;">Du nouveau arrive bientôt… Merci de patienter.</p></div>
       </div>
-
     </div>
   </div>
 
@@ -203,8 +205,6 @@
             content.innerHTML = `<iframe src="${src}" allowfullscreen></iframe>`;
           } else if (type === 'image') {
             content.innerHTML = `<img src="${src}" alt="image">`;
-          } else if (type === 'text') {
-            content.innerHTML = parent.querySelector('.content').innerHTML;
           }
 
           content.classList.add('open');
@@ -215,6 +215,5 @@
       });
     });
   </script>
-
 </body>
 </html>
