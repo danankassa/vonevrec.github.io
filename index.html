@@ -231,7 +231,9 @@
               content.innerHTML = `<img src="${src}" alt="media">`;
             } else if (type === 'text') {
               content.innerHTML = parent.querySelector('.content').innerHTML;
-            }
+            } const separator = src.includes('?') ? '&' : '?';
+  content.innerHTML = `<iframe src="${src}${separator}autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+}
 
             content.classList.add('open');
           } else {
