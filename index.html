@@ -21,8 +21,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 40px;
-        padding-bottom: 20px;
+        padding: 40px 0 20px;
       }
 
       .logo-top img {
@@ -46,7 +45,7 @@
       }
 
       .news-item {
-        border-bottom: 1px solid transparent;
+        border-bottom: 1px solid #ddd;
         padding-bottom: 10px;
         cursor: pointer;
       }
@@ -63,13 +62,17 @@
         font-weight: normal;
         color: #111;
         text-decoration: none;
-        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .title a:hover {
+        color: #555;
       }
 
       .content {
         overflow: hidden;
         max-height: 0;
-        transition: max-height 0.6s ease;
+        transition: max-height 0.6s ease, margin-top 0.6s ease;
       }
 
       .content.open {
@@ -103,16 +106,12 @@
           justify-content: center;
         }
 
-        .news-list {
-          width: 100%;
-        }
-
         .title a {
           font-size: 0.9rem;
         }
 
         footer {
-          font-size: 1.6rem;
+          font-size: 1.3rem;
         }
       }
     </style>
@@ -172,7 +171,9 @@
           <div class="title">
             <a href="#" class="toggle" data-type="text">Bienvenue chez VonEvrec : ouverture prochaine.</a>
           </div>
-          <div class="content"><p>Du nouveau arrive bientôt… Merci de patienter.</p></div>
+          <div class="content">
+            <p>Du nouveau arrive bientôt… Merci de patienter.</p>
+          </div>
         </div>
 
       </div>
@@ -188,7 +189,7 @@
           const content = parent.querySelector('.content');
           const isOpen = content.classList.contains('open');
 
-          // Ferme tout
+          // Ferme tout sauf celui qu'on ouvre
           document.querySelectorAll('.content.open').forEach(c => {
             if (c !== content) {
               c.classList.remove('open');
@@ -204,6 +205,8 @@
               content.innerHTML = `<iframe src="${src}?autoplay=1" allowfullscreen></iframe>`;
             } else if (type === 'image') {
               content.innerHTML = `<img src="${src}" alt="media">`;
+            } else if (type === 'text') {
+              content.innerHTML = `<p>Du nouveau arrive bientôt… Merci de patienter.</p>`;
             }
 
             content.classList.add('open');
