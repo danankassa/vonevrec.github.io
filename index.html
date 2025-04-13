@@ -6,90 +6,192 @@
     <title>VonEvrec</title>
     <link rel="icon" href="lunettesofcreation.jpg" type="image/jpeg" />
     <style>
-      body {
+      @font-face {
+        font-family: 'Neue Montreal';
+        src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/free-regular-400.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      :root {
+        --bg-color: #eeeeee;
+        --text-color: #111111;
+        --date-color: #777777;
+        --footer-color: #eeeeee;
+      }
+
+      html, body {
         margin: 0;
         padding: 0;
-        font-family: 'Time';
-        background-color: #f4f4f4;
-        color: #111;
+        height: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: 'Neue Montreal', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        user-select: none; /* Empêche la sélection du texte */
+        -webkit-user-select: none;
+        overflow-x: hidden;
       }
 
       .logo-top {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 40px 0 20px;
+        padding: 45px 0 25px;
+        transition: padding 0.3s ease;
       }
 
       .logo-top img {
-        max-width: 40px;
+        max-width: 50px;
         height: auto;
+        opacity: 0.92;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .logo-top:hover img {
+        transform: rotate(3deg) scale(1.03);
       }
 
       .main-content {
         display: flex;
-        justify-content: flex-start;
-        padding: 0 40px 20px;
+        justify-content: center;
         flex-grow: 1;
+        width: 100%;
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 0 25px;
+        box-sizing: border-box;
       }
 
       .news-list {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 18px; /* Espacements très resserrés */
         width: 100%;
-        max-width: 800px;
+        max-width: 780px;
+        margin-bottom: 30px;
       }
 
       .news-item {
-        background-color: transparent;
+        position: relative;
         cursor: default;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .news-item::after {
+        content: '';
+        position: absolute;
+        bottom: -9px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.05);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .news-item:hover::after {
+        transform: scaleX(1);
       }
 
       .news-header {
         display: flex;
         align-items: baseline;
-        gap: 20px;
+        gap: 25px;
+        position: relative;
+        z-index: 1;
       }
 
       .date {
-        font-size: 0.75rem;
-        color: #888;
+        font-size: 0.68rem;
+        color: var(--date-color);
         font-weight: normal;
-        font-family: "Time";
         min-width: 70px;
         flex-shrink: 0;
+        transition: color 0.3s ease;
+        letter-spacing: 0.04em;
+        opacity: 0.9;
+      }
+
+      .news-item:hover .date {
+        color: var(--text-color);
       }
 
       .title a {
-        font-size: 0.9rem;
+        font-size: 0.82rem;
         font-weight: normal;
-        color: #3e3e3e; 
+        color: var(--text-color);
         text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.3s ease;
         cursor: pointer;
+        letter-spacing: -0.01em;
+        position: relative;
+        transition: opacity 0.3s ease;
       }
 
-      .title a:hover {
-        border-bottom: 1px solid #3e3e3e;
+      .title a::before {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 0.5px;
+        background-color: var(--text-color);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0.7;
+      }
+
+      .title a:hover::before {
+        transform: scaleX(1);
+      }
+
+      .content-wrapper {
+        position: relative;
+        overflow: hidden;
       }
 
       .content {
         overflow: hidden;
         max-height: 0;
-        transition: max-height 0.4s ease;
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        transform: translateY(-5px);
+        pointer-events: none;
+        margin-left: 95px;
+        position: relative;
+        z-index: 0;
       }
 
       .content.open {
         max-height: 1000px;
-        margin-top: 10px;
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 15px;
+        margin-bottom: 15px;
+        pointer-events: auto;
+      }
+
+      .content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.03);
+        z-index: -1;
+        pointer-events: none;
       }
 
       .content iframe,
@@ -98,9 +200,11 @@
         max-width: 100%;
         border: none;
         height: auto;
+        opacity: 0.97;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       }
 
-      /* FORCE UN FORMAT CARRÉ POUR LES VIDÉOS */
+      /* FORMAT CARRÉ POUR LES VIDÉOS */
       .content iframe {
         aspect-ratio: 4 / 5;
         height: auto;
@@ -108,32 +212,55 @@
 
       .content p {
         margin: 0;
-        font-size: 0.85rem;
-        color: #444;
+        font-size: 0.78rem;
+        color: var(--text-color);
+        opacity: 0.85;
+        font-weight: 300;
       }
 
       footer {
-        text-align: left;
-        padding: 20px 40px;
-        font-size: 1rem;
-        color: #666;
-        background-color: #f2f2f2;
+        text-align: center;
+        padding: 25px 20px;
+        font-size: 0.72rem;
+        color: var(--date-color);
+        background-color: var(--footer-color);
+        letter-spacing: 0.03em;
+        position: relative;
+        margin-top: auto;
       }
 
       @media (max-width: 768px) {
-        .logo-top,
-        .main-content,
-        footer {
-          padding: 20px;
+        .logo-top {
+          padding: 35px 0 25px;
         }
-
-        .title a {
-          font-size: 0.85rem;
+        
+        .main-content {
+          padding: 0 20px;
         }
-
+        
+        .content.open {
+          margin-left: 0;
+        }
+        
+        .news-header {
+          flex-direction: row;
+          align-items: baseline;
+        }
+      }
+      
+      @media (max-width: 480px) {
         .news-header {
           flex-direction: column;
-          align-items: flex-start;
+          gap: 6px;
+        }
+        
+        .date {
+          opacity: 0.8;
+        }
+        
+        .content.open {
+          margin-top: 12px;
+          margin-left: 0;
         }
       }
     </style>
@@ -214,6 +341,19 @@
     <footer>© VonEvrec</footer>
 
     <script>
+      // Animation d'entrée au chargement avec léger décalage
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.news-item').forEach((item, index) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(8px)';
+          setTimeout(() => {
+            item.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, 80 + (index * 60));
+        });
+      });
+
       document.querySelectorAll('.toggle').forEach(link => {
         link.addEventListener('click', function (e) {
           e.preventDefault();
@@ -233,13 +373,21 @@
               content.innerHTML = parent.querySelector('.content').innerHTML;
             }
 
-            content.classList.add('open');
+            // Ajouter un petit délai pour l'animation
+            setTimeout(() => {
+              content.classList.add('open');
+            }, 50);
           } else {
             content.classList.remove('open');
-            content.innerHTML = '';
+            setTimeout(() => {
+              content.innerHTML = '';
+            }, 500);
           }
         });
       });
+
+      // Suppression de l'effet de sélection au survol
+      // Pour ne garder que l'effet de soulignement du texte
     </script>
   </body>
 </html>
