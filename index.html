@@ -14,10 +14,10 @@
       }
 
       :root {
-        --bg-color: #eeeeee;
+        --bg-color: #dddddd;
         --text-color: #111111;
         --date-color: #777777;
-        --footer-color: #eeeeee;
+        --footer-color: #dddddd;
       }
 
       html, body {
@@ -87,22 +87,8 @@
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      .news-item::after {
-        content: '';
-        position: absolute;
-        bottom: -9px;
-        left: 0;
-        height: 1px;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.05);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .news-item:hover::after {
-        transform: scaleX(1);
-      }
+      /* Suppression de la bordure après au survol */
+      /* Nous supprimons complètement le pseudo-élément ::after qui créait la bordure */
 
       .news-header {
         display: flex;
@@ -385,9 +371,6 @@
           }
         });
       });
-
-      // Suppression de l'effet de sélection au survol
-      // Pour ne garder que l'effet de soulignement du texte
     </script>
   </body>
 </html>
