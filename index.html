@@ -14,10 +14,10 @@
       }
 
       :root {
-        --bg-color: #dddddd;
+        --bg-color: #eeeeee;
         --text-color: #111111;
         --date-color: #777777;
-        --footer-color: #dddddd;
+        --footer-color: #eeeeee;
       }
 
       html, body {
@@ -86,9 +86,6 @@
         cursor: default;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
-
-      /* Suppression de la bordure après au survol */
-      /* Nous supprimons complètement le pseudo-élément ::after qui créait la bordure */
 
       .news-header {
         display: flex;
@@ -327,19 +324,9 @@
     <footer>© VonEvrec</footer>
 
     <script>
-      // Animation d'entrée au chargement avec léger décalage
-      document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.news-item').forEach((item, index) => {
-          item.style.opacity = '0';
-          item.style.transform = 'translateY(8px)';
-          setTimeout(() => {
-            item.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-          }, 80 + (index * 60));
-        });
-      });
-
+      // Animation d'entrée au chargement SUPPRIMÉE
+      // Nous avons supprimé tout le bloc qui animait l'apparition des titres
+      
       document.querySelectorAll('.toggle').forEach(link => {
         link.addEventListener('click', function (e) {
           e.preventDefault();
