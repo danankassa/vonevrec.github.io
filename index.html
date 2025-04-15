@@ -43,11 +43,19 @@
         align-items: left;
       }
 
+      /* Header container pour aligner le logo et les boutons sociaux */
+      .header-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 45px 0 25px;
+      }
+
       .logo-top {
         display: flex;
-        justify-content: center; /* Logo centré */
+        justify-content: center;
         align-items: center;
-        padding: 45px 0 25px;
         transition: padding 0.3s ease;
       }
 
@@ -60,6 +68,36 @@
 
       .logo-top:hover img {
         transform: rotate(3deg) scale(1.03);
+      }
+
+      /* Style pour les boutons sociaux */
+      .social-links {
+        position: absolute;
+        top: 45px;
+        right: 25px;
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.05);
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.75rem;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0.7;
+      }
+
+      .social-links a:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+        opacity: 1;
       }
 
       .main-content {
@@ -215,8 +253,13 @@
       }
 
       @media (max-width: 768px) {
-        .logo-top {
+        .header-container {
           padding: 35px 0 25px;
+        }
+        
+        .social-links {
+          top: 35px;
+          right: 20px;
         }
         
         .main-content {
@@ -251,8 +294,14 @@
   </head>
 
   <body>
-    <div class="logo-top">
-      <img src="lunettesofcreation.jpg" alt="VonEvrec Logo" />
+    <div class="header-container">
+      <div class="logo-top">
+        <img src="lunettesofcreation.jpg" alt="VonEvrec Logo" />
+      </div>
+      <div class="social-links">
+        <a href="https://instagram.com/vonevrec" target="_blank" title="Instagram">IG</a>
+        <a href="https://x.com/vonevrecx" target="_blank" title="X (Twitter)">X</a>
+      </div>
     </div>
 
     <div class="main-content">
