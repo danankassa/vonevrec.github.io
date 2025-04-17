@@ -112,7 +112,7 @@
         flex-direction: column;
         gap: 18px; /* Espacements très resserrés */
         width: 100%;
-        max-width: 780px;
+        max-width: 940px; /* Augmenté pour permettre un format plus large */
         margin-bottom: 30px;
         margin-left: 25px; /* Ajoute un peu d'espace à gauche */
       }
@@ -191,6 +191,7 @@
         margin-left: 170px; /* Aligner avec les titres */
         position: relative;
         z-index: 0;
+        width: calc(100% - 170px); /* Largeur adaptée en prenant en compte le décalage */
       }
 
       .content.open {
@@ -224,10 +225,11 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       }
 
-      /* FORMAT CARRÉ POUR LES VIDÉOS */
+      /* FORMAT 16:9 POUR LES VIDÉOS (plus adapté pour PC) */
       .content iframe {
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 16 / 9;
         height: auto;
+        max-height: 70vh; /* limite la hauteur de la vidéo à 70% de la hauteur de l'écran */
       }
 
       .content p {
@@ -259,8 +261,9 @@
           right: 20px;
         }
         
-        .content.open {
-          margin-left: 0;
+        .content {
+          margin-left: 95px; /* Moins de marge pour tablette */
+          width: calc(100% - 95px);
         }
       }
       
@@ -274,9 +277,13 @@
           opacity: 0.8;
         }
         
+        .content {
+          margin-left: 0;
+          width: 100%;
+        }
+        
         .content.open {
           margin-top: 12px;
-          margin-left: 0;
         }
       }
     </style>
@@ -341,7 +348,7 @@
           <div class="news-header">
             <div class="date">02-02-25</div>
             <div class="title">
-              <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
+              <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584">Dana N'kassa & VonEvrec pour 2025.</a>
             </div>
           </div>
           <div class="content"></div>
