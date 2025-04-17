@@ -40,7 +40,6 @@
         user-select: none; /* Empêche la sélection du texte */
         -webkit-user-select: none;
         overflow-x: hidden;
-        align-items: left;
       }
 
       /* Header container pour aligner le logo et les boutons sociaux */
@@ -102,7 +101,7 @@
 
       .main-content {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start; /* Alignement à gauche */
         flex-grow: 1;
         width: 100%;
         max-width: 940px;
@@ -118,6 +117,7 @@
         width: 100%;
         max-width: 780px;
         margin-bottom: 30px;
+        margin-left: 0; /* Assure l'alignement à gauche */
       }
 
       .news-item {
@@ -300,7 +300,7 @@
       </div>
       <div class="social-links">
         <a href="https://instagram.com/vonevrec" target="_blank" title="Instagram">IG</a>
-        <a href="https://x.com/VonEvrecX" target="_blank" title="X (Twitter)">X</a>
+        <a href="https://x.com/vonevrec" target="_blank" title="X (Twitter)">X</a>
       </div>
     </div>
 
@@ -352,7 +352,7 @@
           <div class="news-header">
             <div class="date">02-02-25</div>
             <div class="title">
-              <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584?h=0a919c8a46&autoplay=1">Dana N'kassa & VonEvrec pour 2025.</a>
+              <a href="#" class="toggle" data-type="video" data-src="https://player.vimeo.com/video/1074192584">Dana N'kassa & VonEvrec pour 2025.</a>
             </div>
           </div>
           <div class="content"></div>
@@ -386,7 +386,17 @@
             const src = this.dataset.src;
 
             if (type === 'video') {
-              content.innerHTML = `<iframe src="${src}?autoplay=1" allowfullscreen></iframe>`;
+              // S'il s'agit d'une vidéo Vimeo
+              if (src.includes('vimeo.com')) {
+                // Assurons-nous que l'autoplay est bien activé pour Vimeo
+                const vimeoSrc = src.includes('?') ? 
+                  src + '&autoplay=1&muted=0' : 
+                  src + '?autoplay=1&muted=0';
+                content.innerHTML = `<iframe src="${vimeoSrc}" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+              } else {
+                // Pour les autres vidéos (YouTube, etc.)
+                content.innerHTML = `<iframe src="${src}?autoplay=1" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+              }
             } else if (type === 'image') {
               content.innerHTML = `<img src="${src}" alt="media">`;
             } else if (type === 'text') {
